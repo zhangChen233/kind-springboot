@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		
+		<typeAlias alias="bUser"  type="com.hero.model.bUser"/>
+		<typeAlias alias="bXxk"  type="com.hero.model.bXxk"/>
+		<typeAlias alias="bCd"  type="com.hero.model.bCd"/>			
+		<typeAlias alias="BQd"  type="com.hero.model.BQd"/>
+		<typeAlias alias="Bxy"  type="com.hero.model.Bxy"/>			
+		<typeAlias alias="Bgzcd"  type="com.hero.model.Bgzcd"/>
+				
+				
+	</typeAliases>
+	
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property value="mysql" name="dialect"/>
+			<property value="true" name="offsetAsPageNum"/>
+			<property value="true" name="rowBoundsWithCount "/>
+			<property value="true" name="pageSizeZero"/>
+			<property value="true" name="reasonable"/>
+		</plugin>
+   </plugins>
+
+	<mappers>
+		
+		<mapper resource="com/hero/model/bUser.xml"/>
+		
+		<mapper resource="com/hero/model/BQd.xml"/>
+		
+		<mapper resource="com/hero/model/bXy.xml"/>
+		
+		<mapper resource="com/hero/model/Bgzcd.xml"/>
+		
+		
+		
+	</mappers>
+</configuration>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hero.dao.bXyDao">
+
+<resultMap type="Bxy" id="m1">
+<id column="xyid" property="xyid"/>
+
+<result column="xymc" property="xymc"/>
+<result column="nl" property="nl"/>
+<result column="xb" property="xb"/>
+<result column="dh" property="dh"/>
+<result column="dhgs" property="dhgs"/>
+<result column="qdid" property="qdid"/>
+
+<association property="qd" javaType="BQd"  column="qdid" select="selectQdByQdid"></association>
+</resultMap>
+
+<select id="selectQdByQdid" parameterType="int" resultType="BQd">
+   select * from b_qd where qdid=#{qdid}
+</select>
+
+<delete id="DeleteXyByQdId" parameterType="int">
+
+    delete from b_xy where qdid=#{qdid}
+
+</delete>
+
+<insert id="AddXy" parameterType="Bxy">
+
+insert into b_xy(qdid,xymc,nl,xb,dh,dhgs)values(#{qdid},#{xymc},#{nl},#{xb},#{dh},#{dhgs})
+
+</insert>
+
+<select id="getXyByCondition" parameterType="Bxy" resultMap="m1">
+
+select * from b_xy
+<where>
+
+<if test="qdid!=null">
+    and qdid=#{qdid}
+</if>
+
+<if test="xymc!=null">
+    and xymc=#{xymc}
+</if>
+
+<if test="nl!=null">
+    and nl=#{nl}
+</if>
+
+<if test="xb!=null">
+
+<if test="xb!=3">
+   and xb=#{xb}
+</if>
+    
+</if>
+
+<if test="dh!=null">
+    and dh=#{dh}
+</if>
+
+<if test="dhgs!=null">
+    and dhgs=#{dhgs}
+</if>
+
+</where>
+
+</select>
+
+</mapper>
